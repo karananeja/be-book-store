@@ -1,5 +1,5 @@
 import { config } from 'dotenv';
-import { EnvironmentTypes } from './types';
+import { EnvironmentTypes, ErrMessagesType } from './types';
 config();
 
 export const environment: EnvironmentTypes = {
@@ -7,4 +7,11 @@ export const environment: EnvironmentTypes = {
   DB_USERNAME: process.env.NODE_DB_USERNAME,
   DB_NAME: process.env.NODE_DB_NAME,
   APP_PORT: process.env.NODE_APP_PORT,
+};
+
+export const errMessages: ErrMessagesType = {
+  INTERNAL_SERVER_ERROR: {
+    err: 'INTERNAL_SERVER_ERROR',
+    errMessage: 'Exception has occurred',
+  },
 };
