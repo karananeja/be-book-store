@@ -2,6 +2,7 @@
 import express, { Express, Request, Response } from 'express';
 import { environment } from './utils/constants';
 import { connectDB } from './mongodb/connect';
+import { errorHandler } from '../middlewares/errorMiddlewares';
 
 // Initializing the application
 const app: Express = express();
@@ -15,6 +16,9 @@ connectDB(mongoDbURI);
 
 // Restrict all miscellaneous routes
 app.get('*', (_: Request, res: Response) => res.status(404).send('Not found'));
+
+// Global Error catch handler
+app.use(errorHandler);
 
 // Server started on the required port
 app.listen(port, () =>
