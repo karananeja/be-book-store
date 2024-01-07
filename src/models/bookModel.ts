@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { BookType } from '../src/utils/types';
+import { BookType } from '../utils/types';
 
 const bookSchema = new Schema<BookType>(
   {

@@ -3,8 +3,8 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { environment } from './utils/constants';
 import { connectDB } from './mongodb/connect';
-import { errorHandler } from '../middlewares/errorMiddleware';
-import booksRouter from '../routes/books';
+import { errorHandler } from './middlewares/errorMiddleware';
+import booksRouter from './routes/books';
 
 // Initializing the application
 const app: Express = express();

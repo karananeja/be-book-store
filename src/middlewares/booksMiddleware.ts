@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { ResponseStructureType } from '../src/utils/types';
-import { responseStructure } from '../src/utils/helpers';
+import { ResponseStructureType } from '../utils/types';
+import { responseStructure } from '../utils/helpers';
 
 export const checkBookDetails = (
   req: Request,

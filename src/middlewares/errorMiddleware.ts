@@ -1,11 +1,11 @@
 import fs from 'fs';
 import { ErrorRequestHandler } from 'express';
-import { responseStructure } from '../src/utils/helpers';
-import { errMessages } from '../src/utils/constants';
+import { responseStructure } from '../utils/helpers';
+import { errMessages } from '../utils/constants';
 
 export const errorHandler: ErrorRequestHandler = (error, _, res, next) => {
   if (error) {
-    process.chdir('logs');
+    process.chdir('src/logs');
     const filePath = './errorLogs.json';
 
     fs.readFile(filePath, 'utf-8', (err, data) => {
