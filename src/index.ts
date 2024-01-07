@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 // API endpoints
-app.use('/api/v1', booksRouter);
+app.use('/api/v1/books', booksRouter);
 
 // Setting up the port and database connection url
 const port = environment.APP_PORT || 3000;

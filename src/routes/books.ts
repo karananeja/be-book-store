@@ -7,7 +7,7 @@ import { responseStructure } from '../utils/helpers';
 const router = Router();
 
 router.post(
-  '/books',
+  '/',
   (req, res, next) => checkBookDetails(req, res, next, errMessages.BAD_REQUEST),
   async (req: Request, res: Response, next: NextFunction) => {
     const body = req.body;
@@ -31,7 +31,7 @@ router.post(
   }
 );
 
-router.get('/books', async (_: Request, res: Response, next: NextFunction) => {
+router.get('/', async (_: Request, res: Response, next: NextFunction) => {
   try {
     const books = await Book.find();
     responseStructure({
@@ -44,7 +44,7 @@ router.get('/books', async (_: Request, res: Response, next: NextFunction) => {
 });
 
 router.get(
-  '/book/:bookId',
+  '/:bookId',
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
 
@@ -62,7 +62,7 @@ router.get(
 );
 
 router.put(
-  '/book/:bookId',
+  '/:bookId',
   (req, res, next) => checkBookDetails(req, res, next, errMessages.BAD_REQUEST),
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
@@ -84,7 +84,7 @@ router.put(
 );
 
 router.delete(
-  '/book/:bookId',
+  '/:bookId',
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
 
