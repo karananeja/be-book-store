@@ -1,4 +1,6 @@
+import { config } from 'dotenv';
 import { EnvironmentTypes } from './types';
+config();
 
 const environment: EnvironmentTypes = {
   DB_PASSWORD: process.env.NODE_DB_PASSWORD,

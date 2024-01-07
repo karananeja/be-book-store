@@ -1,13 +1,12 @@
 // Importing the required dependencies into the application
 import express, { Express, Request, Response } from 'express';
-import { config } from 'dotenv';
-config();
+import { environment } from './utils/constants';
 
 // Initializing the application
 const app: Express = express();
 
 // Setting up the port and database connection url
-const port = process.env.NODE_APP_PORT || 3000;
+const port = environment.APP_PORT || 3000;
 
 // Restrict all miscellaneous routes
 app.get('*', (_: Request, res: Response) => res.status(404).send('Not found'));
