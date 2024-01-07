@@ -1,12 +1,17 @@
 // Importing the required dependencies into the application
 import express, { Express, Request, Response } from 'express';
 import { environment } from './utils/constants';
+import { connectDB } from './mongodb/connect';
 
 // Initializing the application
 const app: Express = express();
 
 // Setting up the port and database connection url
 const port = environment.APP_PORT || 3000;
+const mongoDbURI = `mongodb+srv://${environment.DB_USERNAME}:${environment.DB_PASSWORD}@books-store-cluster.ijpskzs.mongodb.net/${environment.DB_NAME}?retryWrites=true&w=majority`;
+
+// Connecting to the database
+connectDB(mongoDbURI);
 
 // Restrict all miscellaneous routes
 app.get('*', (_: Request, res: Response) => res.status(404).send('Not found'));

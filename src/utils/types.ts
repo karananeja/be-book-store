@@ -1,5 +1,6 @@
 export type EnvironmentTypes = {
-  DB_PASSWORD: string | undefined;
-  DB_NAME: string | undefined;
-  APP_PORT: string | undefined;
+  DB_PASSWORD?: string;
+  DB_USERNAME?: string;
+  DB_NAME?: string;
+  APP_PORT?: string;
 };
