@@ -1,11 +1,20 @@
 // Importing the required dependencies into the application
 import express, { Express, Request, Response } from 'express';
+import cors from 'cors';
 import { environment } from './utils/constants';
 import { connectDB } from './mongodb/connect';
-import { errorHandler } from '../middlewares/errorMiddlewares';
+import { errorHandler } from '../middlewares/errorMiddleware';
+import booksRouter from '../routes/books';
 
 // Initializing the application
 const app: Express = express();
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// API endpoints
+app.use('/api/v1', booksRouter);
 
 // Setting up the port and database connection url
 const port = environment.APP_PORT || 3000;
