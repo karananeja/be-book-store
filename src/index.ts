@@ -1,7 +1,7 @@
 // Importing the required dependencies into the application
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
-import { environment } from './utils/constants';
+import { corsOptions, environment } from './utils/constants';
 import { connectDB } from './mongodb/connect';
 import { errorHandler } from './middlewares/errorMiddleware';
 import booksRouter from './routes/books';
@@ -11,7 +11,7 @@ const app: Express = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // API endpoints
 app.use('/api/v1/books', booksRouter);

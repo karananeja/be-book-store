@@ -1,5 +1,6 @@
 import { config } from 'dotenv';
 import { EnvironmentTypes, ErrMessagesType } from './types';
+import { CorsOptions } from 'cors';
 config();
 
 export const environment: EnvironmentTypes = {
@@ -22,4 +23,10 @@ export const errMessages: ErrMessagesType = {
     err: 'BOOK_NOT_FOUND',
     errMessage: `Book doesn't exists`,
   },
+};
+
+export const corsOptions: CorsOptions = {
+  origin: process.env.NODE_ALLOWED_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
 };
