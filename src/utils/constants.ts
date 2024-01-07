@@ -18,4 +18,8 @@ export const errMessages: ErrMessagesType = {
     err: 'BAD_REQUEST',
     errMessage: 'Send all required fields: title, author, publishYear',
   },
+  BOOK_NOT_FOUND: {
+    err: 'BOOK_NOT_FOUND',
+    errMessage: `Book doesn't exists`,
+  },
 };

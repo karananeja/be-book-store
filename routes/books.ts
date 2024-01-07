@@ -49,4 +49,22 @@ router.get('/books', async (_: Request, res: Response, next: NextFunction) => {
   }
 });
 
+router.get(
+  '/book/:bookId',
+  async (req: Request, res: Response, next: NextFunction) => {
+    const bookId = req.params.bookId;
+
+    try {
+      const book = await Book.findById(bookId);
+      const statusCode = book ? 200 : 404;
+      const data = book
+        ? { msg: 'Fetched the book details', info: book }
+        : errMessages.BOOK_NOT_FOUND;
+      responseStructure({ res, statusCode, data });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export default router;
