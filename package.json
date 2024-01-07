@@ -1,12 +1,12 @@
 {
   "name": "be-book-store",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the backend for the Book Store Application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Karan Aneja",
   "license": "ISC"
 }
