@@ -15,8 +15,15 @@ export type BookType = {
 
 type ErrType = { err: string; errMessage: string };
 
+type SuccessType = {
+  msg: string;
+  info: {
+    [x: string]: string | number;
+  };
+};
+
 export type ResponseStructureType = {
-  data: ErrType;
+  data: ErrType | SuccessType;
   res: Response;
   statusCode: number;
 };
