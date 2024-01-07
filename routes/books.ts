@@ -34,4 +34,19 @@ router.post(
   }
 );
 
+router.get('/books', async (_: Request, res: Response, next: NextFunction) => {
+  try {
+    const books = await Book.find();
+    responseStructure({
+      res,
+      data: {
+        msg: 'Fetched all the books',
+        info: books,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default router;
