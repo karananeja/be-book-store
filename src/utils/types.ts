@@ -22,7 +22,9 @@ type JSONValue =
   | boolean
   | { [x: string]: JSONValue }
   | Array<JSONValue>
-  | Array<Document>;
+  | Document
+  | Array<Document>
+  | null;
 
 type SuccessType = {
   msg: string;
