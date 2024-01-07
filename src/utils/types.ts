@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import { Document } from 'mongoose';
 
 export type EnvironmentTypes = {
   DB_PASSWORD?: string;
@@ -15,17 +16,23 @@ export type BookType = {
 
 type ErrType = { err: string; errMessage: string };
 
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | { [x: string]: JSONValue }
+  | Array<JSONValue>
+  | Array<Document>;
+
 type SuccessType = {
   msg: string;
-  info: {
-    [x: string]: string | number;
-  };
+  info: JSONValue;
 };
 
 export type ResponseStructureType = {
   data: ErrType | SuccessType;
   res: Response;
-  statusCode: number;
+  statusCode?: number;
 };
 
 export type ErrMessagesType = {
