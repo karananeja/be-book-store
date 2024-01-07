@@ -14,4 +14,8 @@ export const errMessages: ErrMessagesType = {
     err: 'INTERNAL_SERVER_ERROR',
     errMessage: 'Exception has occurred',
   },
+  BAD_REQUEST: {
+    err: 'BAD_REQUEST',
+    errMessage: 'Send all required fields: title, author, publishYear',
+  },
 };
