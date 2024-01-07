@@ -67,14 +67,16 @@ router.put(
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
 
-    const updatedBook = await Book.findByIdAndUpdate(bookId, req.body);
-    const statusCode = updatedBook ? 200 : 404;
-    const data = updatedBook
-      ? { msg: 'Updated the Book details', info: updatedBook }
-      : errMessages.BOOK_NOT_FOUND;
-    responseStructure({ res, statusCode, data });
-
     try {
+      const updatedBook = await Book.findByIdAndUpdate(bookId, req.body, {
+        new: true,
+      });
+
+      const statusCode = updatedBook ? 200 : 404;
+      const data = updatedBook
+        ? { msg: 'Updated the Book details', info: updatedBook }
+        : errMessages.BOOK_NOT_FOUND;
+      responseStructure({ res, statusCode, data });
     } catch (error) {
       next(error);
     }
