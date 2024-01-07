@@ -83,4 +83,22 @@ router.put(
   }
 );
 
+router.delete(
+  '/book/:bookId',
+  async (req: Request, res: Response, next: NextFunction) => {
+    const bookId = req.params.bookId;
+
+    try {
+      const deletedBook = await Book.findByIdAndDelete(bookId);
+      const statusCode = deletedBook ? 200 : 404;
+      const data = deletedBook
+        ? { msg: 'Deleted the book' }
+        : errMessages.BOOK_NOT_FOUND;
+      responseStructure({ res, statusCode, data });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export default router;

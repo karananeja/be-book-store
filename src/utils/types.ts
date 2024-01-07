@@ -8,11 +8,7 @@ export type EnvironmentTypes = {
   APP_PORT?: string;
 };
 
-export type BookType = {
-  title: string;
-  author: string;
-  publishYear: number;
-};
+export type BookType = { title: string; author: string; publishYear: number };
 
 type ErrType = { err: string; errMessage: string };
 
@@ -26,10 +22,7 @@ type JSONValue =
   | Array<Document>
   | null;
 
-type SuccessType = {
-  msg: string;
-  info: JSONValue;
-};
+type SuccessType = { msg: string; info?: JSONValue };
 
 export type ResponseStructureType = {
   data: ErrType | SuccessType;
@@ -38,8 +31,5 @@ export type ResponseStructureType = {
 };
 
 export type ErrMessagesType = {
-  [x: string]: {
-    err: string;
-    errMessage: string;
-  };
+  [x: string]: { err: string; errMessage: string };
 };
