@@ -28,7 +28,7 @@ app.use(errorHandler);
 
 // Server started on the required port
 app.listen(port, () => {
-  console.log(`[server]: The port is listening on ${port}`);
+  console.log(`[server] The port is listening on ${port}`);
   // Connecting to the database
   connectDB(mongoDbURI);
 });
