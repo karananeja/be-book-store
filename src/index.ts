@@ -20,9 +20,6 @@ app.use('/api/v1/books', booksRouter);
 const port = environment.APP_PORT || 3000;
 const mongoDbURI = `mongodb+srv://${environment.DB_USERNAME}:${environment.DB_PASSWORD}@books-store-cluster.ijpskzs.mongodb.net/${environment.DB_NAME}?retryWrites=true&w=majority`;
 
-// Connecting to the database
-connectDB(mongoDbURI);
-
 // Restrict all miscellaneous routes
 app.get('*', (_: Request, res: Response) => res.status(404).send('Not found'));
 
@@ -30,6 +27,8 @@ app.get('*', (_: Request, res: Response) => res.status(404).send('Not found'));
 app.use(errorHandler);
 
 // Server started on the required port
-app.listen(port, () =>
-  console.log(`[server]: The port is listening on ${port}`)
-);
+app.listen(port, () => {
+  console.log(`[server]: The port is listening on ${port}`);
+  // Connecting to the database
+  connectDB(mongoDbURI);
+});
