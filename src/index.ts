@@ -6,6 +6,7 @@ import { connectDB } from './mongodb/connect';
 import { errorHandler } from './middlewares/error-middleware';
 import booksRouter from './routes/books';
 import authRouter from './routes/auth';
+import libraryRouter from './routes/library';
 
 // Initializing the application
 const app: Express = express();
@@ -17,6 +18,7 @@ app.use(cors(corsOptions));
 // API endpoints
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', booksRouter);
+app.use('/api/v1/library', libraryRouter);
 
 // Setting up the port and database connection url
 const port = environment.APP_PORT || 3000;
