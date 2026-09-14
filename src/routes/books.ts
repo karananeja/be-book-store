@@ -1,13 +1,18 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import { checkBookDetails } from '../middlewares/booksMiddleware';
+import { checkBookDetails } from '../middlewares/books-middleware';
+import { authenticate, requireAdmin } from '../middlewares/auth-middleware';
 import { errMessages } from '../utils/constants';
-import { Book } from '../models/bookModel';
+import { Book } from '../models/book-model';
+import { UserBook } from '../models/user-book-model';
 import { responseStructure } from '../utils/helpers';
 
 const router = Router();
 
+router.use(authenticate);
+
 router.post(
   '/',
+  requireAdmin,
   (req, res, next) => checkBookDetails(req, res, next, errMessages.BAD_REQUEST),
   async (req: Request, res: Response, next: NextFunction) => {
     const body = req.body;
@@ -63,6 +68,7 @@ router.get(
 
 router.put(
   '/:bookId',
+  requireAdmin,
   (req, res, next) => checkBookDetails(req, res, next, errMessages.BAD_REQUEST),
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
@@ -85,16 +91,26 @@ router.put(
 
 router.delete(
   '/:bookId',
+  requireAdmin,
   async (req: Request, res: Response, next: NextFunction) => {
     const bookId = req.params.bookId;
 
     try {
       const deletedBook = await Book.findByIdAndDelete(bookId);
-      const statusCode = deletedBook ? 200 : 404;
-      const data = deletedBook
-        ? { msg: 'Deleted the book' }
-        : errMessages.BOOK_NOT_FOUND;
-      responseStructure({ res, statusCode, data });
+      if (!deletedBook) {
+        return responseStructure({
+          res,
+          statusCode: 404,
+          data: errMessages.BOOK_NOT_FOUND,
+        });
+      }
+
+      await UserBook.deleteMany({ bookId });
+
+      responseStructure({
+        res,
+        data: { msg: 'Deleted the book' },
+      });
     } catch (error) {
       next(error);
     }
