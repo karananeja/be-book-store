@@ -3,8 +3,9 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import { corsOptions, environment } from './utils/constants';
 import { connectDB } from './mongodb/connect';
-import { errorHandler } from './middlewares/errorMiddleware';
+import { errorHandler } from './middlewares/error-middleware';
 import booksRouter from './routes/books';
+import authRouter from './routes/auth';
 
 // Initializing the application
 const app: Express = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 // API endpoints
+app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/books', booksRouter);
 
 // Setting up the port and database connection url

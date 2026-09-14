@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
-import { checkBookDetails } from '../middlewares/booksMiddleware';
+import { checkBookDetails } from '../middlewares/books-middleware';
 import { errMessages } from '../utils/constants';
-import { Book } from '../models/bookModel';
+import { Book } from '../models/book-model';
 import { responseStructure } from '../utils/helpers';
 
 const router = Router();
